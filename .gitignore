@@ -1,15 +1,11 @@
 # Compiled class file
 *.class
 
-target\*
-CustomerMicroservice\target\*
-InsuranceQuoteBackEnd\target\*
-ProductMicroservice\target\*
+# Ignore target directories in any microservice folder
+**/target/
 
-.vscode\*
-CustomerMicroservice\.vscode\*
-InsuranceQuoteBackEnd\.vscode\*
-ProductMicroservice\.vscode\*
+# Ignore VS Code configuration folder
+.vscode/
 
 
 # Log file
