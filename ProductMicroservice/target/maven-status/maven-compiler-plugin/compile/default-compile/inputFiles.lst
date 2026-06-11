@@ -1,0 +1,10 @@
+C:\Java\workspace\Books\Java-Programming-Spring-Insurance-Quote-Application\ProductMicroservice\src\main\java\api\controller\ProductController.java
+C:\Java\workspace\Books\Java-Programming-Spring-Insurance-Quote-Application\ProductMicroservice\src\main\java\api\dto\ProductRequestDTO.java
+C:\Java\workspace\Books\Java-Programming-Spring-Insurance-Quote-Application\ProductMicroservice\src\main\java\api\dto\ProductResponseDTO.java
+C:\Java\workspace\Books\Java-Programming-Spring-Insurance-Quote-Application\ProductMicroservice\src\main\java\api\exceptions\DuplicateProductException.java
+C:\Java\workspace\Books\Java-Programming-Spring-Insurance-Quote-Application\ProductMicroservice\src\main\java\api\exceptions\GlobalExceptionHandler.java
+C:\Java\workspace\Books\Java-Programming-Spring-Insurance-Quote-Application\ProductMicroservice\src\main\java\api\exceptions\ProductNotFoundException.java
+C:\Java\workspace\Books\Java-Programming-Spring-Insurance-Quote-Application\ProductMicroservice\src\main\java\api\model\Product.java
+C:\Java\workspace\Books\Java-Programming-Spring-Insurance-Quote-Application\ProductMicroservice\src\main\java\api\ProductServiceApplication.java
+C:\Java\workspace\Books\Java-Programming-Spring-Insurance-Quote-Application\ProductMicroservice\src\main\java\api\repository\ProductRepository.java
+C:\Java\workspace\Books\Java-Programming-Spring-Insurance-Quote-Application\ProductMicroservice\src\main\java\api\service\ProductService.java

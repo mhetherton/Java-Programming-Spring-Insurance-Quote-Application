@@ -1,0 +1,11 @@
+api\repository\CustomerRepository.class
+api\CustomerServiceApplication.class
+api\config\WebClientConfig.class
+api\exceptions\CustomerNotFoundException.class
+api\service\ProductClientService.class
+api\exceptions\InvalidCustomerException.class
+api\service\CustomerService.class
+api\dto\CustomerDTO.class
+api\exceptions\GlobalExceptionHandler.class
+api\controller\CustomerController.class
+api\model\Customer.class

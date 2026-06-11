@@ -1,0 +1,10 @@
+api\controller\ProductController.class
+api\model\Product.class
+api\exceptions\GlobalExceptionHandler.class
+api\exceptions\ProductNotFoundException.class
+api\dto\ProductRequestDTO.class
+api\dto\ProductResponseDTO.class
+api\exceptions\DuplicateProductException.class
+api\repository\ProductRepository.class
+api\ProductServiceApplication.class
+api\service\ProductService.class
