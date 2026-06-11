@@ -2,6 +2,9 @@ package api.service;
 
 import api.dto.ProductDTO;
 import api.dto.CustomerDTO;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,11 +17,11 @@ public class ExternalServiceClient {
     // Create RestTemplate instance for making REST API calls
     private final RestTemplate restTemplate;
 
-    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ExternalServiceClient.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExternalServiceClient.class);
 
     /*
-     * CONSTRUCTOR FOR EXTERNAL SERVICE CLIENT *
-     * Injects RestTemplate for making REST API calls *
+     * CONSTRUCTOR FOR EXTERNAL SERVICE CLIENT
+     * Injects RestTemplate for making REST API calls
      */
     @Autowired
     public ExternalServiceClient(RestTemplate restTemplate) {
@@ -28,7 +31,7 @@ public class ExternalServiceClient {
     /*
      * GET CUSTOMER BY ACCOUNT NUMBER METHOD
      * Fetches customer details from external service using
-     * account number *
+     * account number
      */
     public CustomerDTO findCustomerByAccountNumber(String accountNumber) {
         logger.info("Fetching customer details for account number: {}", accountNumber);
@@ -49,5 +52,4 @@ public class ExternalServiceClient {
         logger.info("Received {} products", productsArray != null ? productsArray.length : 0);
         return List.of(productsArray);
     }
-
 }

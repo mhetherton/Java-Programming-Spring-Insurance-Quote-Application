@@ -2,7 +2,7 @@ package quotecalculationstests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import api.service.quotecalculations.CalculateQuote;
+import api.service.quotecalculations.CalculateQuoteService;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,7 +16,7 @@ public class TestCalculateQuote {
      * across all tests. This is a common practice in unit testing to improve
      * performance and maintainability of the test code.
      */
-    private CalculateQuote calculateQuote;
+    private CalculateQuoteService calculateQuote;
 
     /*
      * The setUp() method is annotated with @BeforeEach, which means it will
@@ -29,7 +29,7 @@ public class TestCalculateQuote {
      */
     @BeforeEach
     public void setUp() {
-        calculateQuote = new CalculateQuote();
+        calculateQuote = new CalculateQuoteService();
     }
 
     @Test

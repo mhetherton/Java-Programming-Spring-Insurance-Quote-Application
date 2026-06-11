@@ -1,6 +1,6 @@
 package api.controller;
 
-import api.service.quotecalculations.CalculateQuote;
+import api.service.quotecalculations.CalculateQuoteService;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class QuoteController {
     // Create an instance of the CalculateQuote service
-    private final CalculateQuote calculateQuote;
+    private final CalculateQuoteService calculateQuote;
 
     // Create a logger instance for this class
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(InsuredItemController.class);
@@ -32,7 +32,7 @@ public class QuoteController {
      * This is a dependency injection pattern where the CalculateQuote
      * service is injected into the QuoteController class
      */
-    public QuoteController(CalculateQuote calculateQuote) {
+    public QuoteController(CalculateQuoteService calculateQuote) {
         this.calculateQuote = calculateQuote;
     }
 

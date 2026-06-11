@@ -1,13 +1,15 @@
 package application;
 
-import api.service.quotecalculations.CalculateQuote;
+import java.lang.reflect.Method;
+
+import api.service.quotecalculations.CalculateQuoteService;
 
 public class QuoteApplication {
 
     public static void main(String[] args) {
 
         try {
-            java.lang.reflect.Method method = Thread.class.getMethod("isVirtual");
+            Method method = Thread.class.getMethod("isVirtual");
             System.out.println("Is virtual thread: " + method.invoke(Thread.currentThread()));
         } catch (Exception e) {
             System.out.println("Virtual threads are not supported in this Java version.");
@@ -18,20 +20,20 @@ public class QuoteApplication {
          * This class contains the calculateQuote() method
          * that calculates the quote based on the product name and price.
          */
-        CalculateQuote myCalculateQuote = new CalculateQuote();
+        CalculateQuoteService calculateQuoteService = new CalculateQuoteService();
 
         // Call the calculateQuote() method and pass the name and price
         // In our tests we showed the quote for this product was 4.4
-        System.out.println(myCalculateQuote.calculateQuote(
+        System.out.println(calculateQuoteService.calculateQuote(
                 "Mobile Phone", 400.00));
 
         // Call the calculateQuote() method and pass the name and price
         // In our tests we showed the quote for this product was 4.8
-        System.out.println(myCalculateQuote.calculateQuote("Laptop", 400));
+        System.out.println(calculateQuoteService.calculateQuote("Laptop", 400));
 
         // Call the calculateQuote() method and pass the name and price
         // In our tests we showed the quote for this product was 5.2
-        System.out.println(myCalculateQuote.calculateQuote("Television", 400));
+        System.out.println(calculateQuoteService.calculateQuote("Television", 400));
     }
 
 }

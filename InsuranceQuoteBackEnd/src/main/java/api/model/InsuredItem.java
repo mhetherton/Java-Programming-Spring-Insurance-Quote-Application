@@ -88,7 +88,6 @@ public class InsuredItem {
      * Spring uses the getter methods to access the field values and it
      * uses the setter methods to set the field values.
      */
-
     public Long getId() {
         return id;
     }

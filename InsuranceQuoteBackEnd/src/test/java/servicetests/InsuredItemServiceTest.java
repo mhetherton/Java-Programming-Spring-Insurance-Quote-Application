@@ -11,7 +11,7 @@ import api.model.InsuredItem;
 import api.repository.InsuredItemRepository;
 import api.service.ExternalServiceClient;
 import api.service.InsuredItemService;
-import api.service.quotecalculations.CalculateQuote;
+import api.service.quotecalculations.CalculateQuoteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -21,7 +21,7 @@ public class InsuredItemServiceTest {
     // Instance variables for mocks and service under test
     private InsuredItemRepository insuredItemRepository;
     private ExternalServiceClient externalServiceClient;
-    private CalculateQuote calculateQuote;
+    private CalculateQuoteService calculateQuote;
     private InsuredItemService insuredItemService;
 
     /*
@@ -33,7 +33,7 @@ public class InsuredItemServiceTest {
     public void setUp() {
         insuredItemRepository = mock(InsuredItemRepository.class);
         externalServiceClient = mock(ExternalServiceClient.class);
-        calculateQuote = mock(CalculateQuote.class);
+        calculateQuote = mock(CalculateQuoteService.class);
         insuredItemService = new InsuredItemService(calculateQuote, insuredItemRepository, externalServiceClient);
     }
 

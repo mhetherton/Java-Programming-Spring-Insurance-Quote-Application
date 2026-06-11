@@ -1,13 +1,12 @@
 package api.service;
 
 import api.dto.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import api.model.InsuredItem;
 import api.repository.InsuredItemRepository;
-import api.service.quotecalculations.CalculateQuote;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import api.service.quotecalculations.CalculateQuoteService;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import api.exceptions.InvalidQuoteException;
 import api.exceptions.QuoteNotFoundException;
@@ -32,19 +31,19 @@ public class InsuredItemService {
      * ExternalServiceClient for business logic, data access,
      * and external service integration
      */
-    private final CalculateQuote calculateQuote;
+    private final CalculateQuoteService calculateQuote;
     private final InsuredItemRepository insuredItemRepository;
     private final ExternalServiceClient externalServiceClient;
 
     // Logger for logging information, warnings, and errors
-    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ExternalServiceClient.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExternalServiceClient.class);
 
     /*
      * CONSTRUCTOR-BASED DEPENDENCY INJECTION
      * Inject CalculateQuote, InsuredItemRepository,
      * and ExternalServiceClient into InsuredItemService
      */
-    public InsuredItemService(CalculateQuote calculateQuote,
+    public InsuredItemService(CalculateQuoteService calculateQuote,
             InsuredItemRepository insuredItemRepository,
             ExternalServiceClient externalServiceClient) {
         this.calculateQuote = calculateQuote;
@@ -134,12 +133,11 @@ public class InsuredItemService {
 
     /*
      * READ
-     * This method retrieves an InsuredItem by its id. If the
-     * InsuredItem with the given id does not exist, a
-     * QuoteNotFoundException is thrown. We use the findById()
-     * method from the repository to retrieve the InsuredItem.
-     * If it exists, we return the InsuredItem object to the
-     * calling method which will be in the controller class.
+     * This method retrieves an InsuredItem by its id. If the InsuredItem with the
+     * given id does not exist, a QuoteNotFoundException is thrown. We use the
+     * findById() method from the repository to retrieve the InsuredItem. If it
+     * exists, we return the InsuredItem object to the calling method which will be
+     * in the controller class.
      */
     public InsuredItem findInsuredItemById(Long id) {
         return insuredItemRepository.findById(id)
@@ -184,19 +182,18 @@ public class InsuredItemService {
         } // End of if block
 
         /*
-         * Here we retrieve all InsuredItem entities for the given
-         * customer account number, then we use the Java Streams API
-         * to map each entity to an InsuredItemWithoutAccountDTO.
-         * - The repository method findByCustomerAccountNumber
-         * (accountNumber) returns a List<InsuredItem>.
-         * - .stream() creates a stream from this list, allowing
-         * functional-style operations.
+         * Here we retrieve all InsuredItem entities for the given customer account
+         * number, then we use the Java Streams API to map each entity to an
+         * InsuredItemWithoutAccountDTO.
+         * - The repository method findByCustomerAccountNumber (accountNumber) returns a
+         * List<InsuredItem>.
+         * - .stream() creates a stream from this list, allowing functional-style
+         * operations.
          * - .map(...) transforms each InsuredItem into a new
          * InsuredItemWithoutAccountDTO, passing only the relevant
-         * fields (id, productType, productValue, quoteAmount)
-         * to the DTO constructor.
-         * - The DTO intentionally excludes the account number,
-         * since it is already present in the Customer object.
+         * fields (id, productType, productValue, quoteAmount) to the DTO constructor.
+         * - The DTO intentionally excludes the account number, since it is already
+         * present in the Customer object.
          * - .toList() collects all mapped DTOs into a new
          * List<InsuredItemWithoutAccountDTO>.
          * This approach makes the code concise, readable, and
@@ -235,9 +232,9 @@ public class InsuredItemService {
                 .toList();
     }
 
-    /**********************************************************
-     ****************** DERIVED QUERIES ***********************
-     *********************************************************/
+    /*
+     * DERIVED QUERIES
+     */
 
     // Search by product value equal to a specified value
     public List<InsuredItem> findByProductValue(double productValue) {
@@ -374,18 +371,15 @@ public class InsuredItemService {
 
     /*
      * READ WITH PAGINATION
-     * Read all InsuredItem records with pagination. This method
-     * accepts page number and page size as parameters to control
-     * the pagination. We create a Pageable object using
-     * PageRequest.of(page, size) which specifies the page
-     * number and the size of each page. We then pass this
-     * Pageable object to the findAll() method of the repository.
-     * The findAll() method returns a Page<InsuredItem> object
-     * which contains the content for the requested page along
-     * with pagination metadata such as total pages, total
-     * elements, etc. This Page<InsuredItem> object is then
-     * returned to the calling method which will be in the
-     * controller class.
+     * Read all InsuredItem records with pagination. This method accepts page number
+     * and page size as parameters to control the pagination. We create a Pageable
+     * object using PageRequest.of(page, size) which specifies the page
+     * number and the size of each page. We then pass this Pageable object to the
+     * findAll() method of the repository. The findAll() method returns a
+     * Page<InsuredItem> object which contains the content for the requested page
+     * along with pagination metadata such as total pages, total elements, etc. This
+     * Page<InsuredItem> object is then returned to the calling method which will be
+     * in the controller class.
      */
     public Page<InsuredItem> findAllInsuredItemsWithPagination(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
