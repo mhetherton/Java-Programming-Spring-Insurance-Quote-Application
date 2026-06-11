@@ -76,23 +76,23 @@ public class Product {
      */
     public Long getId() {
         return id;
-    } // End of getId() method
+    }
 
     public String getProductType() {
         return productType;
-    } // End of getProductType() method
+    }
 
     public void setProductType(String productType) {
         this.productType = productType;
-    } // End of setProductType() method
+    }
 
     public String getProductDescription() {
         return productDescription;
-    } // End of getDescription() method
+    }
 
     public void setProductDescription(String description) {
         this.productDescription = description;
-    } // End of setDescription() method
+    }
 
     /*
      * Overrides the toString() method to provide a string
@@ -104,6 +104,6 @@ public class Product {
         return String.format(
                 "Product{id=%d, productType='%s', description='%s'}",
                 id, productType, productDescription);
-    } // End of toString() method
+    }
 
-} // End of class Product
+}

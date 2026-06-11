@@ -24,22 +24,22 @@ import java.util.List;
  */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    /***************************************************************
+    /*
      * Finds products where productType contains the given value, *
      * ignoring case. Returns a list of matching Product. *
-     ***************************************************************/
+     */
     List<Product> findByProductTypeContainingIgnoreCase(String productType);
 
-    /***************************************************************
+    /*
      * Finds products where productType matches the given SQL *
      * LIKE pattern, ignoring case. Returns a list of matches. *
-     ***************************************************************/
+     */
     List<Product> findByProductTypeLikeIgnoreCase(String pattern);
 
-    /***************************************************************
+    /*
      * Finds products where productType is in the given list. *
      * Returns a list of matching Product. *
-     ***************************************************************/
+     */
     List<Product> findByProductTypeIn(List<String> productTypes);
 
-} // End of ProductRepository interface
+}

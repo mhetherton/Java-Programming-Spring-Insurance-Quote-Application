@@ -7,6 +7,10 @@ InsuranceQuoteBackEnd\target\*
 ProductMicroservice\target\*
 
 .vscode\*
+CustomerMicroservice\.vscode\*
+InsuranceQuoteBackEnd\.vscode\*
+ProductMicroservice\.vscode\*
+
 
 # Log file
 *.log
