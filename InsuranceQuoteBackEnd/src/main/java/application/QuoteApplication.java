@@ -8,13 +8,6 @@ public class QuoteApplication {
 
     public static void main(String[] args) {
 
-        try {
-            Method method = Thread.class.getMethod("isVirtual");
-            System.out.println("Is virtual thread: " + method.invoke(Thread.currentThread()));
-        } catch (Exception e) {
-            System.out.println("Virtual threads are not supported in this Java version.");
-        }
-
         /*
          * Create an instance of the CalculateQuote class.
          * This class contains the calculateQuote() method

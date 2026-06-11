@@ -17,7 +17,20 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This test class is designed to test the functionality of the
+ * InsuredItemService class.
+ * It uses JUnit 5 for testing and Mockito for mocking dependencies. The tests
+ * cover various scenarios for creating, retrieving, deleting, and searching
+ * insured items, as well as fetching customer details along with their insured
+ * items. Each test method is annotated with @Test and uses assertions to verify
+ * the expected outcomes. The setUp() method is annotated with @BeforeEach to
+ * initialize the necessary mocks and the service instance before each test is
+ * executed. This ensures that each test runs in isolation with a fresh setup,
+ * preventing interference between tests and ensuring accurate results.
+ */
 public class InsuredItemServiceTest {
+
     // Instance variables for mocks and service under test
     private InsuredItemRepository insuredItemRepository;
     private ExternalServiceClient externalServiceClient;

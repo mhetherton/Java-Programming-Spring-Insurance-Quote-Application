@@ -39,8 +39,11 @@ public class QuoteController {
     /**************************************************************
      *********************** CALCULATE QUOTE **********************
      **************************************************************/
-    // Endpoint to calculate the quote for a customer
-    // http://localhost:8888/quote?productType=Laptop&productValue=400
+
+    /**
+     * Endpoint to calculate the quote for a customer
+     * http://localhost:8888/quote?productType=Laptop&productValue=400
+     */
     @GetMapping("/quote")
     public double calculateQuote(@RequestParam @NotBlank(message = "Product type is required") String productType,
             @RequestParam @Positive(message = "Product value must be positive") double productValue) {

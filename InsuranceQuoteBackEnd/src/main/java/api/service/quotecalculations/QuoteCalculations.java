@@ -4,16 +4,10 @@ package api.service.quotecalculations;
  * Determine the product type factor based on the product type
  * If the product type is "Mobile Phone", the factor is 1.1
  * If the product type is "Laptop", the factor is 1.2
- * For any other product type, the factor is 1.0
+ * For any other product type, the factor is 1.4
  */
 public class QuoteCalculations {
 
-    /*
-     * Determine the product type factor based on the product type
-     * If the product type is "Mobile Phone", the factor is 1.1
-     * If the product type is "Laptop", the factor is 1.2
-     * For any other product type, the factor is 1.0
-     */
     public double productTypeFactor(String productType) {
 
         return switch (productType) {
@@ -35,8 +29,8 @@ public class QuoteCalculations {
     }
 
     public double calculateQuote(String productType, double productValue) {
-        return (productTypeFactor(productType) *
+        return ((productTypeFactor(productType) *
                 productValueFactor(productValue) *
-                productValue / 100);
+                productValue) / 100);
     }
 }

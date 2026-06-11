@@ -7,6 +7,7 @@ import api.model.InsuredItem;
 import api.repository.InsuredItemRepository;
 import api.service.quotecalculations.CalculateQuoteService;
 import org.springframework.data.domain.*;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 import api.exceptions.InvalidQuoteException;
 import api.exceptions.QuoteNotFoundException;
@@ -17,6 +18,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
+ * This class contains the business logic for managing insured items. It
+ * provides methods for creating, reading, updating, and deleting insured items,
+ * as well as calculating quotes and retrieving customer details. The service
+ * interacts with the InsuredItemRepository for data access and the
+ * ExternalServiceClient for fetching customer details from an external
+ * microservice.
+ * 
  * @Service annotation is used to mark the class as a service
  *          provider. The @Service annotation is a specialization of the
  * @Component annotation. It's a good practice to use @Service over
@@ -132,7 +140,7 @@ public class InsuredItemService {
     }
 
     /*
-     * READ
+     * FINDINSUREDITEMBYID
      * This method retrieves an InsuredItem by its id. If the InsuredItem with the
      * given id does not exist, a QuoteNotFoundException is thrown. We use the
      * findById() method from the repository to retrieve the InsuredItem. If it
@@ -146,6 +154,7 @@ public class InsuredItemService {
 
     /*
      * CALCULATE AND SAVE QUOTE
+     * 
      * Calculate quote based on product type and value, then
      * save the InsuredItem record to the DB
      */
@@ -170,6 +179,7 @@ public class InsuredItemService {
 
     /*
      * GET CUSTOMER DETAILS WITH INSURED ITEMS
+     * 
      * Retrieve Customer along with their
      * InsuredItem by customer account number
      */
@@ -179,7 +189,7 @@ public class InsuredItemService {
 
         if (customer == null) {
             throw new QuoteNotFoundException("Customer not found with account number: " + accountNumber);
-        } // End of if block
+        }
 
         /*
          * Here we retrieve all InsuredItem entities for the given customer account
@@ -234,9 +244,9 @@ public class InsuredItemService {
 
     /*
      * DERIVED QUERIES
+     * 
+     * Search by product value equal to a specified value
      */
-
-    // Search by product value equal to a specified value
     public List<InsuredItem> findByProductValue(double productValue) {
         List<InsuredItem> results = insuredItemRepository.findByProductValue(productValue);
         if (results.isEmpty()) {
@@ -245,7 +255,9 @@ public class InsuredItemService {
         return results;
     }
 
-    // Search by product value greater than a specified value
+    /*
+     * Search by product value greater than a specified value
+     */
     public List<InsuredItem> findByProductValueGreaterThan(double productValue) {
         List<InsuredItem> results = insuredItemRepository.findByProductValueGreaterThan(productValue);
         if (results.isEmpty()) {
@@ -254,7 +266,9 @@ public class InsuredItemService {
         return results;
     }
 
-    // Search by product value less than a specified value
+    /*
+     * Search by product value less than a specified value
+     */
     public List<InsuredItem> findByProductValueLessThan(double productValue) {
         List<InsuredItem> results = insuredItemRepository.findByProductValueLessThan(productValue);
         if (results.isEmpty()) {
@@ -263,7 +277,9 @@ public class InsuredItemService {
         return results;
     }
 
-    // Search by product type and product value
+    /*
+     * Search by product type and product value
+     */
     public List<InsuredItem> findByProductTypeAndProductValue(String productType, double productValue) {
         List<InsuredItem> results = insuredItemRepository.findByProductTypeAndProductValue(productType, productValue);
         if (results.isEmpty()) {
@@ -273,7 +289,9 @@ public class InsuredItemService {
         return results;
     }
 
-    // Search by product type or product value
+    /*
+     * Search by product type or product value
+     */
     public List<InsuredItem> findByProductTypeOrProductValue(String productType, double productValue) {
         List<InsuredItem> results = insuredItemRepository.findByProductTypeOrProductValue(productType, productValue);
         if (results.isEmpty()) {
@@ -283,7 +301,9 @@ public class InsuredItemService {
         return results;
     }
 
-    // Search by product value between two values
+    /*
+     * Search by product value between two values
+     */
     public List<InsuredItem> findByProductValueBetween(double startValue, double endValue) {
         List<InsuredItem> results = insuredItemRepository.findByProductValueBetween(startValue, endValue);
         if (results.isEmpty()) {
@@ -293,7 +313,9 @@ public class InsuredItemService {
         return results;
     }
 
-    // Search by product type like a string value where the case is ignored
+    /*
+     * Search by product type like a string value where the case is ignored
+     */
     public List<InsuredItem> findByProductTypeLikeIgnoreCase(String pattern) {
         List<InsuredItem> results = insuredItemRepository.findByProductTypeLikeIgnoreCase(pattern);
         if (results.isEmpty()) {
@@ -302,7 +324,9 @@ public class InsuredItemService {
         return results;
     }
 
-    // Search by product type which is in the provided list
+    /*
+     * Search by product type which is in the provided list
+     */
     public List<InsuredItem> findByProductTypeIn(List<String> productTypes) {
         List<InsuredItem> results = insuredItemRepository.findByProductTypeIn(productTypes);
         if (results.isEmpty()) {
@@ -311,8 +335,10 @@ public class InsuredItemService {
         return results;
     }
 
-    // Search by product type and order the list of results in descending order by
-    // product value
+    /*
+     * Search by product type and order the list of results in descending order by
+     * product value.
+     */
     public List<InsuredItem> findByProductTypeOrderByProductValueDesc(String productType) {
         List<InsuredItem> results = insuredItemRepository.findByProductTypeOrderByProductValueDesc(productType);
         if (results.isEmpty()) {
@@ -362,8 +388,9 @@ public class InsuredItemService {
                     CustomerDTO customer = externalServiceClient
                             .findCustomerByAccountNumber(item.getCustomerAccountNumber());
                     List<ProductDTO> products = externalServiceClient.findProductsByType(item.getProductType());
-                    ProductDTO product = products.isEmpty() ? null : products.get(0); // Use first product or handle as
-                                                                                      // needed
+
+                    // Use first product or handle as needed
+                    ProductDTO product = products.isEmpty() ? null : products.get(0);
                     return new InsuredItemWithCustomerAndProductDTO(item, customer, product);
                 })
                 .toList();
@@ -371,6 +398,7 @@ public class InsuredItemService {
 
     /*
      * READ WITH PAGINATION
+     * 
      * Read all InsuredItem records with pagination. This method accepts page number
      * and page size as parameters to control the pagination. We create a Pageable
      * object using PageRequest.of(page, size) which specifies the page
@@ -388,6 +416,7 @@ public class InsuredItemService {
 
     /*
      * READ WITH PAGINATION AND SORTING
+     * 
      * Reads all InsuredItem records with pagination and sorting.
      * Accepts page number, page size, and sort parameters.
      * Handles sort parameters in two formats:
@@ -399,9 +428,10 @@ public class InsuredItemService {
      * Returns a Page<InsuredItem> containing paginated & sorted results.
      */
     public Page<InsuredItem> findAllInsuredItemsWithPaginationAndSort(int page, int size, List<String> sortParams) {
+
         logger.info("Fetching insured items with pagination - page: {}, size: {}, sort: {}", page, size, sortParams);
         Sort sort;
-        List<Sort.Order> orders = new java.util.ArrayList<>();
+        List<Order> orders = new ArrayList<>();
 
         if (sortParams != null && !sortParams.isEmpty()) {
             // If all elements do not contain a comma, treat as pairs: field, direction
@@ -427,7 +457,9 @@ public class InsuredItemService {
                         field = param.trim();
                         direction = "asc";
                     }
-                    Sort.Direction dir = direction.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+                    Sort.Direction dir = direction.equalsIgnoreCase("desc")
+                            ? Sort.Direction.DESC
+                            : Sort.Direction.ASC;
                     orders.add(new Sort.Order(dir, field));
                 }
             }
@@ -440,15 +472,37 @@ public class InsuredItemService {
         return insuredItemRepository.findAll(pageable);
     }
 
-    // Search insured items by product type, customer account number, and product
-    // value We can use all or some of the parameters to filter the results
+    /*
+     * Search insured items by product type, customer account number, and product
+     * value We can use all or some of the parameters to filter the results This
+     * method uses a custom query defined in the repository to search for insured
+     * items based on the provided parameters. The query allows for optional
+     * parameters, meaning that if a parameter is null, it will not be used in the
+     * search criteria. This provides flexibility in searching for insured items
+     * based on different combinations of product type, customer account number, and
+     * product value. The method returns a list of insured items that match the
+     * specified criteria. If no items are found, it will return an empty list.
+     * The search criteria are as follows:
+     * - If productType is provided, it will filter items by product type.
+     * - If customerAccountNumber is provided, it will filter items by customer
+     * account number.
+     * - If productValue is provided, it will filter items by product value.
+     * - If multiple parameters are provided, it will apply all filters using AND
+     * logic.
+     */
     public List<InsuredItem> searchInsuredItems(String productType, String customerAccountNumber, Double productValue) {
         return insuredItemRepository.findByProductTypeAndCustomerAccountNumberAndProductValue(productType,
                 customerAccountNumber, productValue);
     }
 
-    // Finds insured items with productValue between two values
-    // and productType matching a pattern
+    /*
+     * Finds insured items with productValue between two values
+     * and productType matching a pattern This method uses a custom query defined in
+     * the repository to retrieve insured items that have a productValue within the
+     * specified range and a productType that matches the given pattern.
+     * The productType pattern can include wildcards (e.g., "Lap%") to match product
+     * types that start with "Lap".
+     */
     public List<InsuredItem> findByProductValueRangeAndTypePattern(double minValue, double maxValue,
             String typePattern) {
         return insuredItemRepository.findByProductValueRangeAndTypePattern(minValue, maxValue, typePattern);

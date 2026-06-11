@@ -39,13 +39,11 @@ public class TestProductTypeFactor {
 
     @Test
     public void productTypeFactorLaptop() {
-
         assertEquals(1.2, productTypeFactor.productTypeFactor("Laptop"), 0.00);
     }
 
     @Test
     public void productTypeFactorTelevision() {
-
         assertEquals(1.3, productTypeFactor.productTypeFactor("Television"), 0.00);
     }
 
@@ -56,8 +54,6 @@ public class TestProductTypeFactor {
 
     @Test
     public void productTypeFactorShouldReturnDefaultForUnknownType() {
-
         assertEquals(1.4, productTypeFactor.productTypeFactor("UnknownType"), 0.00);
     }
-
 }
