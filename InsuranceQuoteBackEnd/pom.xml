@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.8</version>
+        <version>4.1.0-RC1</version>
         <relativePath/> <!--lookup parent from repository -->
     </parent>
 
@@ -28,41 +28,7 @@
         <maven.compiler.source>25</maven.compiler.source>
         <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <byte-buddy.version>1.17.1</byte-buddy.version>
     </properties>
-
-    <!--
-   The <dependencyManagement> section in a pom.xml file is used
-   to manage dependency versions in a centralized way.
-   This ensures that all modules in a multi-module project use
-   the same version of a dependency.
-
-   This dependency management section:
-   - Defines a BOM (Bill of Materials):
-       The junit-bom is for JUnit 5 and specifies the versions
-       of all JUnit artifacts.
-   - Sets the version:
-       Version 5.9.3 is specified for the junit-bom.
-   - Sets Type and Scope:
-       The type is set to pom and the scope to import,
-       which tells Maven to import this BOM into the project.
-
-   By doing this, all JUnit dependencies in the project will use
-   version 5.9.3 without needing to specify the version for each
-   JUnit dependency individually.
-   -->
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.9.3</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <!--
@@ -95,7 +61,7 @@
         - junit-platform-suite-engine
           Executes test suites created with the Suite API.
         -->
-        <dependency>
+         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite-api</artifactId>
             <scope>test</scope>
@@ -105,7 +71,6 @@
             <artifactId>junit-platform-suite-engine</artifactId>
             <scope>test</scope>
         </dependency>
-
         <!--
         This starter adds all the necessary dependencies to build RESTful
         web services and web applications with Spring Boot.
@@ -131,10 +96,8 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>2.3.232</version>
             <scope>runtime</scope>
         </dependency>
-
         <!--
         Pageable and PageRequest classes are part of the spring-data-commons
         and spring-data-jpa dependencies.
@@ -144,40 +107,18 @@
             <artifactId>spring-data-jpa</artifactId>
         </dependency>
 
-        <!--
-This dependency provides the Jakarta Bean Validation API,
-which is used for validating Java objects using annotations.
-It allows you to define constraints on object fields and
-methods, and provides a way to validate these constraints
-at runtime.
--->
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-            <version>3.0.2</version>
-        </dependency>
-
-        <!--
-        This starter adds support for validation in Spring Boot applications.
-        It includes the Hibernate Validator implementation of the
-        Jakarta Bean Validation API, allowing you to use validation
-        annotations in your Spring Boot application.
-        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <!--
-        This dependency provides integration between Mockito
-        and JUnit 5. It allows us to use Mockito's mocking
-        capabilities with the JUnit Jupiter test engine, enabling
-        the use of @ExtendWith(MockitoExtension.class) in our tests.
+        This dependency provides integration between Mockito and JUnit 5.
+        Version removed to rely on Spring Boot's verified testing alignment.
         -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>5.2.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -198,21 +139,25 @@ at runtime.
     <build>
         <plugins>
             <!--
-            The purpose of the <build> section with the maven-surefire-plugin
-            is to configure the Maven Surefire Plugin, which is used for
-            running unit tests during the build process.
-            This plugin is responsible for executing the tests and generating
-            reports. Using this configuration ensures that our tests are
-            automatically run and validated as part of the build process.
+            The Maven Surefire Plugin handles unit tests during build.
+            Version removed so it uses the pre-configured plugin version 
+            provided by Spring Boot Starter Parent.
             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.2</version>
+            </plugin>
+            
+            <!--
+            The Spring Boot Maven Plugin packs the application into a fully 
+            executable fat JAR file, including the missing segment from before.
+            -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-
-            <!--
+             <!--
             This configuration sets the main class in the JAR manifest
             created by Maven.
 

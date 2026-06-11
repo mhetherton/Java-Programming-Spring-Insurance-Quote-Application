@@ -92,7 +92,7 @@ public class InsuredItemController {
             return new ResponseEntity<>(createdItem, HttpStatus.CREATED);
         } catch (InvalidQuoteException ex) {
             logger.error("Failed to create insured item due to invalid quote: {}", ex.getMessage(), ex);
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().build();
         }
     }
 
@@ -140,9 +140,9 @@ public class InsuredItemController {
                     insuredItem);
             return new ResponseEntity<>(updatedItem, HttpStatus.OK);
         } catch (InvalidQuoteException ex) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().build();
         } catch (Exception ex) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         }
     }
 
@@ -188,7 +188,7 @@ public class InsuredItemController {
             InsuredItem item = insuredItemService.findInsuredItemById(id);
             return new ResponseEntity<>(item, HttpStatus.OK);
         } catch (QuoteNotFoundException ex) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         }
     }
 
@@ -213,7 +213,7 @@ public class InsuredItemController {
          * and the results list in the response body.
          */
         if (results.isEmpty()) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         } else {
             return new ResponseEntity<>(results, HttpStatus.OK);
         }
@@ -245,7 +245,7 @@ public class InsuredItemController {
         } catch (Exception ex) {
             // logger.error("Failed to create and save insured item: {}", ex.getMessage(),
             // ex);
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().build();
         }
     }
 
@@ -346,7 +346,7 @@ public class InsuredItemController {
             @RequestParam(value = "productValue") double productValue) {
         List<InsuredItem> results = insuredItemService.findByProductValue(productValue);
         if (results.isEmpty()) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         } else {
             return new ResponseEntity<>(results, HttpStatus.OK);
         }
