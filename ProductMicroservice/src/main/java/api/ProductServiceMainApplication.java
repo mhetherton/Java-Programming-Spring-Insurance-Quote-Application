@@ -14,6 +14,6 @@ public class ProductServiceMainApplication {
          * Spring Boot uses to bootstrap the application.
          */
         SpringApplication.run(ProductServiceMainApplication.class, args);
-    } // End of main() method
+    }
 
-} // End of ProductServiceApplication class
+}

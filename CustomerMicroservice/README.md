@@ -23,6 +23,10 @@ http://localhost:9999/api/customer/6
 
 
 
+# GET Product-Microservice via client ->
+http://localhost:9998/api/product/types
+http://localhost:9999/api/customer/products/descriptions?productType=Printer
+
 
 
 

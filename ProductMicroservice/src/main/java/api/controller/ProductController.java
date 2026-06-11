@@ -49,8 +49,8 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<?> addProduct(@RequestBody ProductRequestDTO dto) {
         try {
-            Product product = new Product(dto.getProductType(),
-                    dto.getProductDescription());
+            Product product = new Product(dto.productType(),
+                    dto.productDescription());
             Product newProduct = productService.addProduct(product);
             ProductResponseDTO responseDto = new ProductResponseDTO(
                     newProduct.getId(),
@@ -72,7 +72,7 @@ public class ProductController {
     @PutMapping("/{id}")
     public ResponseEntity<ProductResponseDTO> updateProduct(@PathVariable Long id,
             @RequestBody ProductRequestDTO dto) throws Exception {
-        Product product = new Product(dto.getProductType(), dto.getProductDescription());
+        Product product = new Product(dto.productType(), dto.productDescription());
         Product updatedProduct = productService.updateProduct(id, product);
         ProductResponseDTO responseDto = new ProductResponseDTO(
                 updatedProduct.getId(),
