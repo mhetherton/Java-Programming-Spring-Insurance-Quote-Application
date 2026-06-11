@@ -10,45 +10,5 @@ import api.model.InsuredItem;
  * case the customer details are retrieved from an external customer
  * microservice.
  */
-public class InsuredItemWithCustomerDTO {
-    // Private fields for insured item and customer details
-    private InsuredItem insuredItem;
-    private CustomerDTO customer;
-
-    // Default constructor
-    public InsuredItemWithCustomerDTO() {
-    }
-
-    // Parameterized constructor
-    public InsuredItemWithCustomerDTO(InsuredItem insuredItem,
-            CustomerDTO customer) {
-        this.insuredItem = insuredItem;
-        this.customer = customer;
-    }
-
-    // Getters and setters
-    public InsuredItem getInsuredItem() {
-        return insuredItem;
-    }
-
-    public void setInsuredItem(InsuredItem insuredItem) {
-        this.insuredItem = insuredItem;
-    }
-
-    public CustomerDTO getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(CustomerDTO customer) {
-        this.customer = customer;
-    }
-
-    // toString method for debugging
-    @Override
-    public String toString() {
-        return "InsuredItemWithCustomerDTO{" +
-                "insuredItem=" + insuredItem +
-                ", customer=" + customer +
-                '}';
-    }
+public record InsuredItemWithCustomerDTO(InsuredItem insuredItem, CustomerDTO customer) {
 }

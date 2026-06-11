@@ -34,31 +34,26 @@ public class TestCalculateQuote {
 
     @Test
     public void calculateQuoteMobileAndLessThanOrEqualTo500() {
-
         assertEquals(4.4, calculateQuote.calculateQuote("Mobile Phone", 400), 0.0);
     }
 
     @Test
     public void calculateQuoteMobileAndGreaterThan500() {
-
         assertEquals(13.2, calculateQuote.calculateQuote("Mobile Phone", 1000), 0.0);
     }
 
     @Test
     public void calculateQuoteForNegativeValueThrowsException() {
-
         assertThrows(IllegalArgumentException.class, () -> calculateQuote.calculateQuote("Mobile Phone", -100));
     }
 
     @Test
     public void calculateQuoteInvalidProductType() {
-
         assertEquals(1.4, calculateQuote.calculateQuote("InvalidType", 100), 0.0);
     }
 
     @Test
     public void calculateQuoteZeroProductValue() {
-
         assertThrows(IllegalArgumentException.class, () -> calculateQuote.calculateQuote("Mobile Phone", 0));
     }
 
@@ -70,7 +65,6 @@ public class TestCalculateQuote {
 
     @Test
     public void calculateQuoteUpperBoundaryValue() {
-
         double result = calculateQuote.calculateQuote("Mobile Phone",
                 Double.MAX_VALUE);
         assertFalse(Double.isFinite(result), "Result should be a " +
@@ -79,7 +73,6 @@ public class TestCalculateQuote {
 
     @Test
     public void calculateQuoteValidProductTypes() {
-
         assertEquals(4.8, calculateQuote.calculateQuote("Laptop", 400), 0.0);
         assertEquals(5.2, calculateQuote.calculateQuote("Television", 400), 0.0);
     }

@@ -34,85 +34,71 @@ public class TestFactors {
 
     @Test
     public void productTypeFactorMobile() {
-
         assertEquals(1.1, quoteCalculations.productTypeFactor("Mobile Phone"), 0.00);
     }
 
     @Test
     public void productTypeFactorLaptop() {
-
         assertEquals(1.2, quoteCalculations.productTypeFactor("Laptop"), 0.00);
     }
 
     @Test
     public void productTypeFactorTelevision() {
-
         assertEquals(1.3, quoteCalculations.productTypeFactor("Television"), 0.00);
     }
 
     @Test
     public void productTypeFactorOther() {
-
         assertEquals(1.4, quoteCalculations.productTypeFactor("Charger"), 0.00);
     }
 
     @Test
     public void productTypeFactorShouldReturnDefaultForUnknownType() {
-
         assertEquals(1.4, quoteCalculations.productTypeFactor("UnknownType"), 0.00);
     }
 
     @Test
     public void productValueFactorLessThanOrEqualTo500() {
-
         assertEquals(1.0, quoteCalculations.productValueFactor(400), 0.00);
     }
 
     @Test
     public void productValueFactorGreaterThan500() {
-
         assertEquals(1.2, quoteCalculations.productValueFactor(600), 0.00);
     }
 
     @Test
     public void productValueFactorLessThanZeroThrowsException() {
-
         assertThrows(IllegalArgumentException.class, () -> quoteCalculations.productValueFactor(-100));
     }
 
     @Test
     public void productValueFactorExactly500() {
-
         assertEquals(1.0, quoteCalculations.productValueFactor(500), 0.00);
     }
 
     @Test
     public void productValueFactorJustAbove500() {
-
         assertEquals(1.2, quoteCalculations.productValueFactor(501), 0.00);
     }
 
     @Test
     public void productValueFactorZeroThrowsException() {
-
         assertThrows(IllegalArgumentException.class, () -> quoteCalculations.productValueFactor(0));
     }
 
     @Test
     public void calculateQuoteMobileAndLessThanOrEqualTo500() {
-
         assertEquals(4.4, quoteCalculations.calculateQuote("Mobile Phone", 400), 0.0);
     }
 
     @Test
     public void calculateQuoteMobileAndGreaterThan500() {
-
         assertEquals(13.2, quoteCalculations.calculateQuote("Mobile Phone", 1000), 0.0);
     }
 
     @Test
     public void calculateQuoteForNegativeValueThrowsException() {
-
         assertThrows(IllegalArgumentException.class, () -> quoteCalculations.calculateQuote("Mobile Phone", -100));
     }
 
@@ -128,7 +114,6 @@ public class TestFactors {
 
     @Test
     public void calculateQuoteNullProductType() {
-
         assertThrows(NullPointerException.class, () -> quoteCalculations.calculateQuote(null, 100));
     }
 

@@ -97,9 +97,9 @@ public class InsuredItemServiceTest {
 
         CustomerWithInsuredItemsDTO result = insuredItemService.getCustomerWithInsuredItems(accountNumber);
 
-        assertEquals(customer, result.getCustomer());
-        assertEquals(1, result.getInsuredItems().size());
-        assertEquals("Laptop", result.getInsuredItems().get(0).productType());
+        assertEquals(customer, result.customer());
+        assertEquals(1, result.insuredItems().size());
+        assertEquals("Laptop", result.insuredItems().get(0).productType());
     }
 
     @Test
