@@ -5,7 +5,7 @@
 **/target/
 
 # Ignore VS Code configuration folder
-.vscode/
+**/.vscode/
 
 
 # Log file
