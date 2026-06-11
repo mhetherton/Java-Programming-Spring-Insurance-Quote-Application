@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
  * we are referencing the byte code of the class not the java file code.
  */
 @SpringBootApplication
-public class QuoteApplication {
+public class InsuredQuoteMainApplication {
     public static void main(String[] args) throws Exception {
         /*
          * The SpringApplication.run() method is used to start the
@@ -28,7 +28,7 @@ public class QuoteApplication {
          * 1. The main configuration class
          * 2. The command-line arguments
          */
-        SpringApplication.run(QuoteApplication.class, args);
+        SpringApplication.run(InsuredQuoteMainApplication.class, args);
     }
 
     /*

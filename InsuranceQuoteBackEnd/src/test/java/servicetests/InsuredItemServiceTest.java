@@ -99,7 +99,7 @@ public class InsuredItemServiceTest {
 
         assertEquals(customer, result.getCustomer());
         assertEquals(1, result.getInsuredItems().size());
-        assertEquals("Laptop", result.getInsuredItems().get(0).getProductType());
+        assertEquals("Laptop", result.getInsuredItems().get(0).productType());
     }
 
     @Test

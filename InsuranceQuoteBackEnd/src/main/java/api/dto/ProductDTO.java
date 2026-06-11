@@ -10,45 +10,6 @@ package api.dto;
  * id, product type, and product description, along with constructors, getters,
  * and setters.
  */
-public class ProductDTO {
-    private Long id;
-    private String productType;
-    private String productDescription;
-
-    // Default constructor
-    public ProductDTO() {
-    }
-
-    // Parameter constructor
-    public ProductDTO(Long productId, String productType, String productDescription) {
-        this.id = productId;
-        this.productType = productType;
-        this.productDescription = productDescription;
-    }
-
-    // Getters and setters for each private field
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getProductType() {
-        return productType;
-    }
-
-    public void setProductType(String productType) {
-        this.productType = productType;
-    }
-
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
-    }
+public record ProductDTO(Long id, String productType, String productDescription) {
 
 }

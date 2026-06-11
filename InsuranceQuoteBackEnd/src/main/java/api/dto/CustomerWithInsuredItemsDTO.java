@@ -29,7 +29,7 @@ public class CustomerWithInsuredItemsDTO {
 
     public List<InsuredItemWithoutAccountDTO> getInsuredItems() {
         return insuredItems;
-    } // End of getInsuredItems() method
+    }
 
     public void setInsuredItems(List<InsuredItemWithoutAccountDTO> insuredItems) {
         this.insuredItems = insuredItems;
