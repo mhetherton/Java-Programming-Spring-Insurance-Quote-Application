@@ -2,9 +2,13 @@
 
 # GET 
 http://localhost:9999/h2-ui
+
 http://localhost:9999/api/customer
+
 http://localhost:9999/api/customer/1
+
 http://localhost:9999/api/customer/account/ACC127
+
 http://localhost:9999/api/customer/count
 
 
