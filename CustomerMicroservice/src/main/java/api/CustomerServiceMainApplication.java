@@ -1,7 +1,9 @@
+
 package api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 /**
  * The @SpringBootApplication annotation is used to enable a number of
@@ -19,6 +21,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * referencing the byte code of the class not the java file code.
  */
 @SpringBootApplication
+@EnableCaching
 public class CustomerServiceMainApplication {
     public static void main(String[] args) throws Exception {
         /*

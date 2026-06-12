@@ -5,6 +5,9 @@ import api.exceptions.CustomerNotFoundException;
 import api.model.Customer;
 import api.repository.CustomerRepository;
 import api.exceptions.InvalidCustomerException;
+
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +35,7 @@ public class CustomerService {
      * Retrieves all customer from the repository.
      * Returns a list of CustomerDTO.
      */
+    @Cacheable(value = "customers", key = "'all'")
     public List<CustomerDTO> findAllCustomer() {
         return customerRepository.findAll()
                 .stream()
@@ -45,6 +49,7 @@ public class CustomerService {
      * Accepts a CustomerDTO object.
      * Returns the saved CustomerDTO.
      */
+    @CacheEvict(value = "customers", allEntries = true)
     public CustomerDTO addCustomer(CustomerDTO customerDTO) {
         Customer entity = toEntity(customerDTO);
         Customer saved = customerRepository.save(entity);
@@ -58,6 +63,7 @@ public class CustomerService {
      * Returns the updated CustomerDTO.
      * Throws exception if account number is changed or name is null.
      */
+    @CacheEvict(value = "customers", allEntries = true)
     public CustomerDTO updateCustomer(String accountNumber,
             CustomerDTO customerDTO) throws Exception {
         Customer existing = findCustomerByAccountNumberEntity(accountNumber);
@@ -85,6 +91,7 @@ public class CustomerService {
      * method of the JpaRepository interface.
      */
     @Transactional
+    @CacheEvict(value = "customers", allEntries = true)
     public void deleteCustomer(String accountNumber) throws Exception {
         customerRepository.deleteByAccountNumber(accountNumber);
     }
@@ -94,6 +101,7 @@ public class CustomerService {
      * Retrieves customer by ID.
      * Returns the CustomerDTO if found, otherwise throws.
      */
+    @Cacheable(value = "customers", key = "#id")
     public CustomerDTO findCustomerId(Long id) {
         Customer entity = customerRepository.findById(id).orElseThrow();
         return toDto(entity);
@@ -104,6 +112,7 @@ public class CustomerService {
      * Retrieves customer by account number.
      * Returns the CustomerDTO if found, otherwise throws.
      */
+    @Cacheable(value = "customers", key = "#accountNumber")
     public CustomerDTO findCustomerByAccountNumber(String accountNumber) {
         Customer entity = findCustomerByAccountNumberEntity(accountNumber);
         return toDto(entity);

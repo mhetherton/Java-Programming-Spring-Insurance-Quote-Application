@@ -1,5 +1,7 @@
 package api.model;
 
+import java.io.Serializable;
+
 import jakarta.persistence.*;
 
 /**
@@ -20,7 +22,11 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable {
+
+    // 2. Best Practice: Define a unique version ID
+    private static final long serialVersionUID = 1L;
+
     /*
      * The @Id annotation specifies the primary key of an entity.
      * The @GeneratedValue annotation provides for the specification of
