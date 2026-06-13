@@ -24,7 +24,6 @@ import jakarta.persistence.*;
 @Table(name = "customer")
 public class Customer implements Serializable {
 
-    // 2. Best Practice: Define a unique version ID
     private static final long serialVersionUID = 1L;
 
     /*

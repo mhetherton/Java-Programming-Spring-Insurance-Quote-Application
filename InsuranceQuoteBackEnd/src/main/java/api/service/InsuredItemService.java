@@ -60,7 +60,6 @@ public class InsuredItemService {
     }
 
     /*
-     * CREATE
      * Create a new InsuredItem by accepting an InsuredItem object
      * If the productType is null, throw an InvalidQuoteException.
      * Save the InsuredItem object to the database using save()
@@ -79,7 +78,6 @@ public class InsuredItemService {
     }
 
     /*
-     * READ
      * Read all InsuredItem records from the database using the
      * findAll() method which is provided by the JpaRepository
      * interface, which is extended by the InsuredItemRepository
@@ -93,7 +91,6 @@ public class InsuredItemService {
     }
 
     /*
-     * UPDATE
      * Update an existing InsuredItem by accepting an id an
      * InsuredItem object. If the productType is null, throw an
      * InvalidQuoteException. First, we retrieve the existing
@@ -115,21 +112,16 @@ public class InsuredItemService {
     }
 
     /*
-     * DELETE
-     * Delete an InsuredItem by accepting an id. If the
-     * InsuredItem with the given id does not exist, a
-     * QuoteNotFoundException will be thrown. We check if the
-     * InsuredItem with the given id exists using the existsById()
-     * method from the repository. If it does not exist, we throw
-     * a QuoteNotFoundException. If it exists, we delete it using
-     * the deleteById() method from the repository. This method
-     * does not return anything to the calling method which will
-     * be in the controller class.
-     * We could simply use the Jpa method findById() to check if
-     * the InsuredItem exists but using existsById() is more
-     * efficient as it only checks for existence without
-     * retrieving the entire entity. This is especially useful
-     * when we only need to check if the entity exists before
+     * Delete an InsuredItem by accepting an id. If the InsuredItem with the given
+     * id does not exist, a QuoteNotFoundException will be thrown. We check if the
+     * InsuredItem with the given id exists using the existsById() method from the
+     * repository. If it does not exist, we throw a QuoteNotFoundException. If it
+     * exists, we delete it using the deleteById() method from the repository. This
+     * method does not return anything to the calling method which will
+     * be in the controller class. We could simply use the Jpa method findById() to
+     * check if the InsuredItem exists but using existsById() is more efficient as
+     * it only checks for existence without retrieving the entire entity. This is
+     * especially useful when we only need to check if the entity exists before
      * performing a delete operation.
      */
     public void deleteInsuredItem(Long id) {
@@ -140,7 +132,6 @@ public class InsuredItemService {
     }
 
     /*
-     * FINDINSUREDITEMBYID
      * This method retrieves an InsuredItem by its id. If the InsuredItem with the
      * given id does not exist, a QuoteNotFoundException is thrown. We use the
      * findById() method from the repository to retrieve the InsuredItem. If it
@@ -153,8 +144,6 @@ public class InsuredItemService {
     }
 
     /*
-     * CALCULATE AND SAVE QUOTE
-     * 
      * Calculate quote based on product type and value, then
      * save the InsuredItem record to the DB
      */
@@ -178,10 +167,8 @@ public class InsuredItemService {
     }
 
     /*
-     * GET CUSTOMER DETAILS WITH INSURED ITEMS
-     * 
-     * Retrieve Customer along with their
-     * InsuredItem by customer account number
+     * Retrieve Customer with their InsuredItems by customer account number
+     * Retrieve Customer along with their InsuredItem by customer account number
      */
     public CustomerWithInsuredItemsDTO getCustomerWithInsuredItems(String accountNumber) {
         // Fetch customer details from external service
@@ -223,9 +210,8 @@ public class InsuredItemService {
     }
 
     /*
-     * FILTER INSURED ITEMS BY PRODUCT TYPE
-     * Retrieve InsuredItem records matching the specified
-     * product type (case-insensitive)
+     * Retrieve InsuredItem records matching the specified product type
+     * (case-insensitive)
      */
     public List<InsuredItem> findByProductType(String productType) {
         /*
@@ -243,8 +229,6 @@ public class InsuredItemService {
     }
 
     /*
-     * DERIVED QUERIES
-     * 
      * Search by product value equal to a specified value
      */
     public List<InsuredItem> findByProductValue(double productValue) {

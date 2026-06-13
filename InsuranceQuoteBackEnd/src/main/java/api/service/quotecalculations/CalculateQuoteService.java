@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CalculateQuoteService {
+
     // Instantiate the ProductTypeFactor and ProductValueFactor classes
     ProductTypeFactor productTypeFactor = new ProductTypeFactor();
     ProductValueFactor productValueFactor = new ProductValueFactor();

@@ -41,8 +41,7 @@ public class ExternalServiceClient {
 
     /*
      * GET CUSTOMER BY ACCOUNT NUMBER METHOD
-     * Fetches customer details from external service using
-     * account number
+     * Fetches customer details from external service using account number
      */
     public CustomerDTO findCustomerByAccountNumber(String accountNumber) {
         logger.info("Fetching customer details for account number: {}", accountNumber);

@@ -40,7 +40,7 @@ public class QuoteController {
      *********************** CALCULATE QUOTE **********************
      **************************************************************/
 
-    /**
+    /*
      * Endpoint to calculate the quote for a customer
      * http://localhost:8888/quote?productType=Laptop&productValue=400
      */
@@ -55,6 +55,10 @@ public class QuoteController {
 
     }
 
+    /*
+     * Endpoint to check the status of threads
+     * http://localhost:8888/check-threads
+     */
     @GetMapping("/check-threads")
     public Map<String, Object> checkThreads() {
         Thread currentThread = Thread.currentThread();

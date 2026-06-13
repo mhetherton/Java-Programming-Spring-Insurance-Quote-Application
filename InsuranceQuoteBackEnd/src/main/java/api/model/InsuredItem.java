@@ -1,16 +1,12 @@
 package api.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.*;
 
 /**
  * The @Entity annotation specifies that the class is an entity
- * and is mapped to a database table.
- * The @Table annotation specifies the name of the database table
- * which the entity is mapped to.
+ * and is mapped to a database table. The @Table annotation specifies the name
+ * of the database table which the entity is mapped to.
  * They are annotations provided by the Java Persistence API (JPA).
  */
 @Entity

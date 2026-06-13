@@ -9,6 +9,5 @@ import java.io.Serializable;
  */
 public record CustomerDTO(String accountNumber, String name, String email) implements Serializable {
 
-    // 2. Best Practice: Define a unique version ID
     private static final long serialVersionUID = 1L;
 }

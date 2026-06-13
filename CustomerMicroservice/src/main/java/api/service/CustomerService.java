@@ -45,8 +45,7 @@ public class CustomerService {
 
     /**
      * addCustomer()
-     * Adds a new customer to the repository.
-     * Accepts a CustomerDTO object.
+     * Adds a new customer to the repository. Accepts a CustomerDTO object.
      * Returns the saved CustomerDTO.
      */
     @CacheEvict(value = "customers", allEntries = true)
@@ -58,9 +57,8 @@ public class CustomerService {
 
     /**
      * updateCustomer()
-     * Updates an existing customer's by account number.
-     * Accepts accountNumber and CustomerDTO object.
-     * Returns the updated CustomerDTO.
+     * Updates an existing customer's by account number. Accepts accountNumber and
+     * CustomerDTO object. Returns the updated CustomerDTO.
      * Throws exception if account number is changed or name is null.
      */
     @CacheEvict(value = "customers", allEntries = true)
@@ -83,11 +81,10 @@ public class CustomerService {
     }
 
     /**
-     * Method to delete a customer. We use the @Transactional annotation
-     * to ensure the delete operation is performed within a transaction.
-     * We use the @Transactional annotation because the
-     * deleteByAccountNumber() method has been defined in the
-     * CustomerRepository interface, it is not a built-in
+     * Method to delete a customer. We use the @Transactional annotation to ensure
+     * the delete operation is performed within a transaction. We use
+     * the @Transactional annotation because the deleteByAccountNumber() method has
+     * been defined in the CustomerRepository interface, it is not a built-in
      * method of the JpaRepository interface.
      */
     @Transactional
@@ -98,8 +95,7 @@ public class CustomerService {
 
     /**
      * findCustomerId()
-     * Retrieves customer by ID.
-     * Returns the CustomerDTO if found, otherwise throws.
+     * Retrieves customer by ID. Returns the CustomerDTO if found, otherwise throws.
      */
     @Cacheable(value = "customers", key = "#id")
     public CustomerDTO findCustomerId(Long id) {
@@ -109,8 +105,8 @@ public class CustomerService {
 
     /**
      * findCustomerByAccountNumber()
-     * Retrieves customer by account number.
-     * Returns the CustomerDTO if found, otherwise throws.
+     * Retrieves customer by account number. Returns the CustomerDTO if found,
+     * otherwise throws.
      */
     @Cacheable(value = "customers", key = "#accountNumber")
     public CustomerDTO findCustomerByAccountNumber(String accountNumber) {
